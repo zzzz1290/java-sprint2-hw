@@ -5,7 +5,12 @@ public class Main {
     // Поехали!
     public static void main(String[] args) {
         //ileReader fileReader = new FileReader();
-        YearlyReport yearlyReport = new YearlyReport();
+        YearlyReport yearlyReport = new YearlyReport("resources/y.2021.csv");
+
+        MonthlyReport monthlyReport = new MonthlyReport();
+        monthlyReport.loadFile("resources/m.202101.csv");
+        monthlyReport.loadFile("resources/m.202102.csv");
+        monthlyReport.loadFile("resources/m.202103.csv");
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Check");
@@ -18,7 +23,7 @@ public class Main {
             }
             switch (command) {
                 case 1:
-                    this.yearlyReport;
+
                     break;
                 case 2:
                     /*
