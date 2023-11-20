@@ -23,7 +23,7 @@ public class MonthlyReport {
             int unit_price = Integer.parseInt(parts[3]);
 
             Expense expense = new Expense(item_name, is_expense, quantity, unit_price);
-            if (!is_expense) {
+            if (is_expense) {
                 sales.add(expense);
             } else {
                 spending.add(expense);

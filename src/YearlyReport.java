@@ -22,7 +22,7 @@ public class YearlyReport {
             int amount = Integer.parseInt(parts[1]);
             boolean is_expense = Boolean.parseBoolean(parts[2]);
             YearExpense yearExpense = new YearExpense(month,amount,is_expense);
-            if (!is_expense) {
+            if (is_expense) {
                 sales.add(yearExpense);
             } else {
                 spending.add(yearExpense);

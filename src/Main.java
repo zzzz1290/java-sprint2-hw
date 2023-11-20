@@ -9,14 +9,15 @@ public class Main {
 
         MonthlyReport monthlyReport = new MonthlyReport();
 
-        //monthlyReport.loadFile("resources/m.202101.csv");
+        monthlyReport.loadFile("resources/m.202101.csv");
         //monthlyReport.loadFile("resources/m.202102.csv");
         //monthlyReport.loadFile("resources/m.202103.csv");
         Checker checker = new Checker(monthlyReport, yearlyReport);
         Scanner scanner = new Scanner(System.in);
         System.out.println("Check");
-        //System.out.println(checker.check());
-        //System.out.println(yearlyReport.getExpense());
+        monthlyReport.getTopExpense();
+        checker.checks();
+        //
         //System.out.println(yearlyReport.averExpanse());
         //System.out.println(yearlyReport.getIsExpencse());
         //System.out.println(monthlyReport.getTopProductIs());

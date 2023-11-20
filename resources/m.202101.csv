@@ -5,3 +5,5 @@ item_name,is_expense,quantity,unit_price
 Аренда коньков,FALSE,1000,180
 Продажа билетов,FALSE,3500,300
 Продажа кофе,FALSE,2421,150
+plus,true,1290,1
+minus,false,9999999,9999
