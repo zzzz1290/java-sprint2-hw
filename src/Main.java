@@ -4,19 +4,24 @@ import java.util.Scanner;
 public class Main {
     // Поехали!
     public static void main(String[] args) {
-        //ileReader fileReader = new FileReader();
-        YearlyReport yearlyReport = new YearlyReport("resources/y.2021.csv");
+        Scanner scanner = new Scanner(System.in);
+
+        FileReader fileReader = new FileReader();
+        //YearlyReport yearlyReport = new YearlyReport("resources/y.2021.csv");
 
         MonthlyReport monthlyReport = new MonthlyReport();
+        //fileReader.readFileContents("m.202101.csv");
+        monthlyReport.readMonthlyReport("m.202101.csv");
+        monthlyReport.getTopProductIs();
 
-        monthlyReport.loadFile("resources/m.202101.csv");
+        //monthlyReport.loadFile("resources/m.202101.csv");
         //monthlyReport.loadFile("resources/m.202102.csv");
         //monthlyReport.loadFile("resources/m.202103.csv");
-        Checker checker = new Checker(monthlyReport, yearlyReport);
-        Scanner scanner = new Scanner(System.in);
+        //Checker checker = new Checker(monthlyReport, yearlyReport);
+
         System.out.println("Check");
-        monthlyReport.getTopExpense();
-        checker.checks();
+        //monthlyReport.getTopExpense();
+        //checker.checks();
         //
         //System.out.println(yearlyReport.averExpanse());
         //System.out.println(yearlyReport.getIsExpencse());
@@ -44,23 +49,23 @@ public class Main {
                         switch (command_menu_1) {
                             case 1:
                                 System.out.println("m.202101.csv");
-                                monthlyReport.loadFile("resources/m.202101.csv");
+                                //monthlyReport.loadFile("resources/m.202101.csv");
                                 System.out.println(monthlyReport.getTopProductIs());
-                                System.out.println(monthlyReport.getTopExpense());
+                                //System.out.println(monthlyReport.getTopExpense());
                                 monthlyReport.clean();
                                 break;
                             case 2:
                                 System.out.println("m.202102.csv");
-                                monthlyReport.loadFile("resources/m.202102.csv");
+                                //monthlyReport.loadFile("resources/m.202102.csv");
                                 System.out.println(monthlyReport.getTopProductIs());
-                                System.out.println(monthlyReport.getTopExpense());
+                                //System.out.println(monthlyReport.getTopExpense());
                                 monthlyReport.clean();
                                 break;
                             case 3:
                                 System.out.println("m.202103.csv");
-                                monthlyReport.loadFile("resources/m.202103.csv");
+                                //monthlyReport.loadFile("resources/m.202103.csv");
                                 System.out.println(monthlyReport.getTopProductIs());
-                                System.out.println(monthlyReport.getTopExpense());
+                                //System.out.println(monthlyReport.getTopExpense());
                                 monthlyReport.clean();
                                 break;
                         }
@@ -77,10 +82,10 @@ public class Main {
                     }
                         switch (command_menu_2) {
                             case 1:
-                                System.out.println(yearlyReport.getExpense());
+                                //System.out.println(yearlyReport.getExpense());
                                 break;
                             case 2:
-                                System.out.println(yearlyReport.getIsExpencse());
+                                //System.out.println(yearlyReport.getIsExpencse());
                                 break;
                             case 3:
                                 System.out.println();

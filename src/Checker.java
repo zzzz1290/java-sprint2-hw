@@ -29,7 +29,7 @@ public class Checker {
 
  */
 
-
+/*
     public void checks() {
         HashMap<String, HashMap<Boolean, Integer>> monthlyReportByYearly = new HashMap<>(); //item_name -> quantity -> is_expense
         int sum = 0;
@@ -54,4 +54,6 @@ public class Checker {
 
         System.out.println(monthlyReportByYearly.size());
     }
+
+ */
 }

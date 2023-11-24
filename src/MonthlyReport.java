@@ -5,17 +5,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MonthlyReport {
-    public  ArrayList<Expense> sales = new ArrayList<>();
-    public  ArrayList<Expense> spending = new ArrayList<>();
+    FileReader fileReader = new FileReader();
+    //ArrayList<String> lines = fileReader.readFileContents(fileName);
+
+    public  ArrayList<Expense> expenses = new ArrayList<>();
+    //public  ArrayList<Expense> spending = new ArrayList<>();
 
 
-    public void loadFile(String path) {
+    public void readMonthlyReport(String path) {
 
-        String content = readFileContentsOrNull(path);
-        String[] lines = content.split("\r?\n"); // разбивка по строкам
+        ArrayList<String> lines = fileReader.readFileContents(path);
+        //String[] lines = content.split("\r?\n"); // разбивка по строкам
 
-        for (int i = 1; i < lines.length; i++) {
-            String line = lines[i]; //item_name,is_expense,quantity,unit_price
+        for (int i = 1; i < lines.size(); i++) {
+            String line = lines.get(i); //item_name,is_expense,quantity,unit_price
             String[] parts = line.split(","); // Коньки,TRUE,50,2000
             String item_name = parts[0];
             boolean is_expense = Boolean.parseBoolean(parts[1]);
@@ -23,17 +26,21 @@ public class MonthlyReport {
             int unit_price = Integer.parseInt(parts[3]);
 
             Expense expense = new Expense(item_name, is_expense, quantity, unit_price);
+            expenses.add(expense);
+            /*
             if (is_expense) {
                 sales.add(expense);
             } else {
                 spending.add(expense);
             }
+
+             */
         }
     }
 
     public String getTopProductIs() {
         HashMap<String, Integer> freqs = new HashMap<>();
-        for (Expense sale : sales) {
+        for (Expense sale : expenses) {
             freqs.put(sale.item_name, freqs.getOrDefault(sale.item_name,0) + (sale.quantity * sale.unit_price));
         }
         //HashMap<String, Boolean> expense = new HashMap<>();
@@ -50,6 +57,7 @@ public class MonthlyReport {
         }
         return "Самый прибыльный товар '" + max_item_name + "' прибыль " + freqs.get(max_item_name) + " рублей";
     }
+    /*
 
     public String getTopExpense() {
         HashMap<String, Integer> freqs = new HashMap<>();
@@ -77,11 +85,11 @@ public class MonthlyReport {
 
  */
     void clean() {
-        sales.clear();
-        spending.clear();
+        expenses.clear();
+        //spending.clear();
     }
 
-
+/*
     public String readFileContentsOrNull (String path) {
         try {
             return Files.readString(Path.of(path));
@@ -90,6 +98,8 @@ public class MonthlyReport {
             return null;
         }
     }
+
+ */
 
 }
 

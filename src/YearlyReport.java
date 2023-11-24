@@ -34,6 +34,7 @@ public class YearlyReport {
         HashMap<Integer, Integer> expense = new HashMap<>();
         int sum = 0;
         int sumMount = 0;
+
         for (YearExpense sale : sales) {
             expense.put(sale.month, sale.amount);
              for (int maxsum : expense.values()) {
