@@ -100,3 +100,30 @@ public class YearlyReport {
 
 
 }
+
+-------------------------------------
+        import java.util.ArrayList;
+        import java.util.HashMap;
+
+public class YearlyReport {
+    FileReader fileReader = new FileReader();
+    public ArrayList<YearExpense> expenseYearlyReport = new ArrayList<>();
+    public void readYearlyReport(String path) {
+        ArrayList<String> lines = fileReader.readFileContents(path);
+        for (int i = 1; i < lines.size(); i++) {
+            String line = lines.get(i); //item_name,is_expense,quantity,unit_price
+            String[] parts = line.split(","); // Коньки,TRUE,50,2000
+            int month = Integer.parseInt(parts[0]);
+            int amount = Integer.parseInt(parts[1]);
+            boolean is_expense = Boolean.parseBoolean(parts[2]);
+            YearExpense yearExpense = new YearExpense(month,amount,is_expense);
+            expenseYearlyReport.add(yearExpense);
+        }
+    }
+
+    public String yearReport(String path) {
+        System.out.println("Год отчета" + path);
+        HashMap<Integer,Integer> yearExpense = new HashMap<>();
+
+    }
+}

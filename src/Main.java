@@ -7,7 +7,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         FileReader fileReader = new FileReader();
-        //YearlyReport yearlyReport = new YearlyReport("resources/y.2021.csv");
+        YearlyReport yearlyReport = new YearlyReport("resources/y.2021.csv");
 
         MonthlyReport monthlyReport = new MonthlyReport();
         //fileReader.readFileContents("m.202101.csv");
@@ -82,10 +82,10 @@ public class Main {
                     }
                         switch (command_menu_2) {
                             case 1:
-                                //System.out.println(yearlyReport.getExpense());
+                                System.out.println(yearlyReport.getExpense());
                                 break;
                             case 2:
-                                //System.out.println(yearlyReport.getIsExpencse());
+                                System.out.println(yearlyReport.getIsExpencse());
                                 break;
                             case 3:
                                 System.out.println();
@@ -119,7 +119,46 @@ public class Main {
 
 
 }
+------------------------------------------------------------------------------
+/*
+
+/*
+import java.util.Scanner;
+import java.util.HashMap;
+
+public class Main {
+    public static void main(String[] args) {
+        HashMap<String,MonthlyReport> monthlyReports = new HashMap<>();
+        Scanner scanner = new Scanner(System.in);
+        MonthlyReport monthlyReport = new MonthlyReport();
+        /*
+        String monthNumb = "01";
+        monthlyReport.readMonthlyReport(monthNumb,"m.2021"+ monthNumb +".csv");
+        //monthlyReport.topItem(monthNumb);
+        monthlyReports.put(monthNumb,monthlyReport);
+        System.out.println(monthlyReports.get(monthNumb).topItem(monthNumb));
+        //System.out.println(monthlyReport.expenses);
 
 
+         */
+String monthNumbs = "00";
+    Integer num = Integer.parseInt(monthNumbs);
+        for (int i = 0; i < 3; i++) {
+        num = num + 1;
+        String monthNumb = "0" + String.valueOf(num);
+        monthlyReport.readMonthlyReport(monthNumb,"m.2021"+ monthNumb +".csv");
+        //monthlyReport.topItem(monthNumb);
+        monthlyReports.put(monthNumb,monthlyReport);
+        System.out.println(monthlyReports.get(monthNumb).topItem(monthNumb));
+        monthlyReport.cleans();
+        }
+        }
+        }
 
+        /*
+        //Считывание всех отчетов
+
+        //конец
+         */
+ */
 
