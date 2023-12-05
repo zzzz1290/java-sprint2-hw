@@ -1,5 +1,5 @@
-public class YearExpense {
-    public YearExpense (String month, int amount, boolean is_expense) {
+public class ExpenseYearly {
+    public ExpenseYearly(String month, int amount, boolean is_expense) {
         this.month = month;
         this.amount = amount;
         this.is_expense = is_expense;
@@ -8,3 +8,4 @@ public class YearExpense {
     public int amount;
     boolean is_expense;
 }
+

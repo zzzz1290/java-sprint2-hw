@@ -1,111 +1,5 @@
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
-
-public class MonthlyReport {
-    FileReader fileReader = new FileReader();
-    //ArrayList<String> lines = fileReader.readFileContents(fileName);
-
-    public  ArrayList<Expense> expenses = new ArrayList<>();
-    //public  ArrayList<Expense> spending = new ArrayList<>();
-
-
-    public void readMonthlyReport(String path) {
-
-        ArrayList<String> lines = fileReader.readFileContents(path);
-        //String[] lines = content.split("\r?\n"); // разбивка по строкам
-
-        for (int i = 1; i < lines.size(); i++) {
-            String line = lines.get(i); //item_name,is_expense,quantity,unit_price
-            String[] parts = line.split(","); // Коньки,TRUE,50,2000
-            String item_name = parts[0];
-            boolean is_expense = Boolean.parseBoolean(parts[1]);
-            int quantity = Integer.parseInt(parts[2]);
-            int unit_price = Integer.parseInt(parts[3]);
-
-            Expense expense = new Expense(item_name, is_expense, quantity, unit_price);
-            expenses.add(expense);
-            /*
-            if (is_expense) {
-                sales.add(expense);
-            } else {
-                spending.add(expense);
-            }
-
-             */
-        }
-    }
-
-    public String getTopProductIs() {
-        HashMap<String, Integer> freqs = new HashMap<>();
-        for (Expense sale : expenses) {
-            freqs.put(sale.item_name, freqs.getOrDefault(sale.item_name,0) + (sale.quantity * sale.unit_price));
-        }
-        //HashMap<String, Boolean> expense = new HashMap<>();
-
-        String max_item_name = null;
-        for (String item_name : freqs.keySet()) {
-            if (max_item_name == null) {
-                max_item_name = item_name;
-                continue;
-            }
-            if (freqs.get(max_item_name) < freqs.get(item_name)) {
-                max_item_name = item_name;
-            }
-        }
-        return "Самый прибыльный товар '" + max_item_name + "' прибыль " + freqs.get(max_item_name) + " рублей";
-    }
-    /*
-
-    public String getTopExpense() {
-        HashMap<String, Integer> freqs = new HashMap<>();
-        for (Expense spend : spending) {
-            freqs.put(spend.item_name, freqs.getOrDefault(spend.item_name,0) + (spend.quantity * spend.unit_price));
-        }
-        //HashMap<String, Boolean> expense = new HashMap<>();
-
-        String max_item_name = null;
-        for (String item_name : freqs.keySet()) {
-            if (max_item_name == null) {
-                max_item_name = item_name;
-                continue;
-            }
-            if (freqs.get(max_item_name) < freqs.get(item_name)) {
-                max_item_name = item_name;
-            }
-        }
-        return "Самая большая трата '" + max_item_name + "' трата " + freqs.get(max_item_name) + " рублей";
-    }
-/*
-    public String totalReport() {
-
-    }
-
- */
-    void clean() {
-        expenses.clear();
-        //spending.clear();
-    }
-
-/*
-    public String readFileContentsOrNull (String path) {
-        try {
-            return Files.readString(Path.of(path));
-        } catch (IOException e) {
-            System.out.println("не могу прочитать месячный отчет отчет");
-            return null;
-        }
-    }
-
- */
-
-}
-
-------------------------------------------------------
-        import java.util.ArrayList;
-        import java.util.HashMap;
 
 public class MonthlyReport {
     FileReader fileReader = new FileReader();
@@ -136,8 +30,8 @@ public class MonthlyReport {
          */
         System.out.println("Месяц "+ month);
         HashMap<String, Integer> profit = new HashMap<>();
-        Long sumProfit = 0L;
-        Long sumExpense = 0L;
+        Integer sumProfit = 0;
+        Integer sumExpense = 0;
         for (ExpenseMonthly sale : expenseMonthReport) {
             if (!sale.is_expense) {
                 profit.put(sale.item_name, profit.getOrDefault(sale.item_name, 0) + (sale.quantity * sale.unit_price));
@@ -168,7 +62,7 @@ public class MonthlyReport {
             if (low_item_name == null) {
                 low_item_name = item_name;
                 continue;
-            }
+                }
             if (expense.get(low_item_name) < expense.get(item_name)) {
                 low_item_name = item_name;
             }

@@ -1,129 +1,84 @@
-import javax.imageio.IIOException;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class YearlyReport {
-
-    public ArrayList<YearExpense> sales = new ArrayList<>();
-    public ArrayList<YearExpense> spending = new ArrayList<>();
-
-    public YearlyReport (String path) {
-        String content = readFileContentsOrNull(path);
-        String[] lines = content.split("\r?\n"); // разбивка по строкам
-
-        for (int i = 1; i < lines.length; i++) {
-            String line = lines[i]; //month,amount,is_expense
-            String[] parts = line.split(","); // 01,1593150,false
-            int month = Integer.parseInt(parts[0]);
-            int amount = Integer.parseInt(parts[1]);
-            boolean is_expense = Boolean.parseBoolean(parts[2]);
-            YearExpense yearExpense = new YearExpense(month,amount,is_expense);
-            if (is_expense) {
-                sales.add(yearExpense);
-            } else {
-                spending.add(yearExpense);
-            }
-        }
-    }
-
-    public String getExpense () {
-        HashMap<Integer, Integer> expense = new HashMap<>();
-        int sum = 0;
-        int sumMount = 0;
-
-        for (YearExpense sale : sales) {
-            expense.put(sale.month, sale.amount);
-             for (int maxsum : expense.values()) {
-                 sum = + sum + maxsum;
-             }
-            sumMount = sumMount + 1;
-        }
-        for (Map.Entry<Integer, Integer> mounth : expense.entrySet()) {
-            System.out.println("Месяц " +  mounth.getKey() + " Прибыль " + mounth.getValue());
-        }
-        System.out.println("Cердняя прибыль за год " + sum / sumMount);
-        return "Сумма прибыли за год " + sum;
-    }
-
-    public String getIsExpencse () {
-        HashMap<Integer, Integer> isExpense = new HashMap<>();
-        int sum = 0;
-        int sumMountSpend = 0;
-        for (YearExpense spend : spending) {
-            isExpense.put(spend.month, spend.amount);
-            for (int maxSumSend : isExpense.values()) {
-                sum = + sum + maxSumSend;
-            }
-            sumMountSpend = sumMountSpend + 1;
-        }
-        for (Map.Entry<Integer, Integer> mounth : isExpense.entrySet()) {
-            System.out.println("Месяц " +  mounth.getKey() + " трата " + mounth.getValue());
-        }
-        System.out.println("Cердняя трата за год " + (sum / sumMountSpend));
-        return "Сумма трат за год " + sum;
-    }
-/*
-    public String averExpanse () {
-        HashMap<Integer, Integer> avereExpanse = new HashMap<>();
-        Integer averSum = 0;
-        Integer i = 0;
-        for (YearExpense sale : sales) {
-            avereExpanse.put(sale.month, sale.amount);
-            for (int averSums : avereExpanse.values()) {
-                averSum = +averSum + averSums;
-            }
-            i = i + 1;
-        }
-        return "aver " + averSum / i;
-    }
-
- */
-
-    public String readFileContentsOrNull (String path) {
-        try {
-            return Files.readString(Path.of(path));
-        } catch (IOException e) {
-            System.out.println("не могу прочитать годовой отчет");
-            return null;
-        }
-    }
-
-
-    void clean() {
-        sales.clear();
-        spending.clear();
-    }
-
-
-}
-
--------------------------------------
-        import java.util.ArrayList;
-        import java.util.HashMap;
-
-public class YearlyReport {
     FileReader fileReader = new FileReader();
+
     public ArrayList<YearExpense> expenseYearlyReport = new ArrayList<>();
     public void readYearlyReport(String path) {
         ArrayList<String> lines = fileReader.readFileContents(path);
         for (int i = 1; i < lines.size(); i++) {
             String line = lines.get(i); //item_name,is_expense,quantity,unit_price
             String[] parts = line.split(","); // Коньки,TRUE,50,2000
-            int month = Integer.parseInt(parts[0]);
+            String month = parts[0];
             int amount = Integer.parseInt(parts[1]);
             boolean is_expense = Boolean.parseBoolean(parts[2]);
             YearExpense yearExpense = new YearExpense(month,amount,is_expense);
             expenseYearlyReport.add(yearExpense);
         }
     }
-
+/*
     public String yearReport(String path) {
-        System.out.println("Год отчета" + path);
+        System.out.println("Год отчета " + path);
         HashMap<Integer,Integer> yearExpense = new HashMap<>();
+        //HashMap<Integer,Integer> mounthProfit = new HashMap<>();
+        Integer sumProfitYear = 0;
+        Integer sumMounthProfitYear = 0;
+        for (YearExpense profit : expenseYearlyReport) {
+            if (profit.is_expense) {
+                yearExpense.put(profit.month,profit.month);
+                for (Integer maxSum : yearExpense.values()) {
+                    sumProfitYear = sumMounthProfitYear + maxSum;
+                }
+                sumMounthProfitYear = sumMounthProfitYear + 1;
+            }
+        }
+        for (Map.Entry<Integer,Integer> mounth : yearExpense.entrySet()) {
+            System.out.println("Месяц " +  mounth.getKey() + " Прибыль " + mounth.getValue());
+        }
+        System.out.println("Cердняя прибыль за год " + sumProfitYear / sumMounthProfitYear);
+        return "Сумма прибыли за год " + sumProfitYear;
+    }
 
+ */
+public String yearReport (String path) {
+    System.out.println("Год " + path);
+    HashMap<String, Integer> profitsYear = new HashMap<>();
+    int sumProfitYear = 0;
+    int sumMounthProfitYear = 0;
+    for (YearExpense profitYear : expenseYearlyReport) {
+        if (!profitYear.is_expense) {
+            profitsYear.put(profitYear.month, profitYear.amount);
+        }
+    }
+    //Заполнение HashMap profitsYear
+    for (int maxsum : profitsYear.values()) {
+        sumProfitYear = +sumProfitYear + maxsum;
+        sumMounthProfitYear = sumMounthProfitYear + 1;
+    }
+    //Поиск суммы прибыли и кол-ва месяцев
+    for (Map.Entry<String, Integer> mounth : profitsYear.entrySet()) {
+        System.out.println("Месяц " +  mounth.getKey() + " Прибыль " + mounth.getValue());
+    }
+    //Вывод по месяцам
+    int sumExpensYear = 0;
+    int sumMounthExpensYear = 0;
+    HashMap<String,Integer> expense = new HashMap<>();
+    for (YearExpense expenseYear : expenseYearlyReport) {
+        if (expenseYear.is_expense) {
+            expense.put(expenseYear.month, expenseYear.amount);
+        }
+    }
+    //Заполнение HashMap expense
+    for (int maxsumm : expense.values()) {
+        sumExpensYear = sumExpensYear + maxsumm;
+        sumMounthExpensYear = sumMounthExpensYear + 1;
+    }
+    //Поиск суммы траты и кол-ва месяцев
+
+    System.out.println("Средняя прибыль за год " + sumProfitYear / sumMounthProfitYear);
+    System.out.println("Средняя трата за год " + sumExpensYear / sumMounthExpensYear);
+    return null;
     }
 }
