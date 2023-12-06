@@ -8,8 +8,7 @@ public class Check {
         this.yearlyReport = yearlyReport;
     }
 
-    public boolean checks() {
-        boolean checks = true;
+    public void checks() {
         int amountToMountTrue = 0;
         int amountToMountFalse = 0;
         HashMap<String, HashMap<Boolean,Integer>> expenseMonthByMonth = new HashMap<>(); // month -> -> (quantity * unit_price) -> is_expense
@@ -50,11 +49,9 @@ public class Check {
                 int expenByMonth = monthToIsExpByMont.get(is_expense);
                 if (expenByYear != expenByMonth) {
                     System.out.println("Ошибка:");
-                    System.out.println("Месяц " + month + " в годовом отчете " + expenByYear + " а что в месячном отчете " +  expenByMonth);
-                    checks = false;
+                    System.out.println("Месяц " + month + " в годовом отчете " + expenByYear + " а в месячном отчете " +  expenByMonth);
                 }
             }
         }
-        return checks;
     }
 }

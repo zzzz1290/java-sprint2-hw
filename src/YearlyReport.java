@@ -18,30 +18,6 @@ public class YearlyReport {
             expenseYearlyReport.add(yearExpense);
         }
     }
-/*
-    public String yearReport(String path) {
-        System.out.println("Год отчета " + path);
-        HashMap<Integer,Integer> yearExpense = new HashMap<>();
-        //HashMap<Integer,Integer> mounthProfit = new HashMap<>();
-        Integer sumProfitYear = 0;
-        Integer sumMounthProfitYear = 0;
-        for (YearExpense profit : expenseYearlyReport) {
-            if (profit.is_expense) {
-                yearExpense.put(profit.month,profit.month);
-                for (Integer maxSum : yearExpense.values()) {
-                    sumProfitYear = sumMounthProfitYear + maxSum;
-                }
-                sumMounthProfitYear = sumMounthProfitYear + 1;
-            }
-        }
-        for (Map.Entry<Integer,Integer> mounth : yearExpense.entrySet()) {
-            System.out.println("Месяц " +  mounth.getKey() + " Прибыль " + mounth.getValue());
-        }
-        System.out.println("Cердняя прибыль за год " + sumProfitYear / sumMounthProfitYear);
-        return "Сумма прибыли за год " + sumProfitYear;
-    }
-
- */
 public String yearReport (String path) {
     System.out.println("Год " + path);
     HashMap<String, Integer> profitsYear = new HashMap<>();
@@ -80,5 +56,8 @@ public String yearReport (String path) {
     System.out.println("Средняя прибыль за год " + sumProfitYear / sumMounthProfitYear);
     System.out.println("Средняя трата за год " + sumExpensYear / sumMounthExpensYear);
     return null;
+    }
+    public void cleans() {
+        expenseYearlyReport.clear();
     }
 }
