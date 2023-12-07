@@ -21,13 +21,13 @@ public class MonthlyReport {
         }
     }
 
-    public String topItem(String month) {
-        /*
+    public void topItem(String month) {
+
         if (0 == expenseMonthReport.size()) {
             System.out.println("Небходимо считать файлы");
             return;
         }
-         */
+
         System.out.println("Месяц "+ month);
         HashMap<String, Integer> profit = new HashMap<>();
         Integer sumProfit = 0;
@@ -68,51 +68,10 @@ public class MonthlyReport {
             }
         }
         System.out.println("Сумма трат за месяц: " + sumExpense);
-        return "Самая большая трата: " + low_item_name + ", cтоимость траты: " + expense.get(low_item_name);
+        System.out.println("Самая большая трата: " + low_item_name + ", cтоимость траты: " + expense.get(low_item_name));
     }
 
     public void cleans() {
         expenseMonthReport.clear();
     }
 }
-
-
-    /*
-
-    public void getTopProductIs() {
-        HashMap<String, Integer> freqs = new HashMap<>();
-        for (ExpenseMonthly sale : expenses) {
-            freqs.put(sale.item_name, freqs.getOrDefault(sale.item_name,0) + (sale.quantity * sale.unit_price));
-        }
-        //HashMap<String, Boolean> expense = new HashMap<>();
-
-        String max_item_name = null;
-        for (String item_name : freqs.keySet()) {
-            if (max_item_name == null) {
-                max_item_name = item_name;
-                continue;
-            }
-            if (freqs.get(max_item_name) < freqs.get(item_name)) {
-                max_item_name = item_name;
-            }
-        }
-        freqs.get(max_item_name);
-    }
-    public void isExpen() {
-        HashMap<String, Boolean> test = new HashMap<>();
-        for (Boolean isExpense : test.keySet()) {
-
-        }
-    }
-
-     */
-
-/*
-for (Boolean isExpense : monthData.keySet()){
-                HashMap<String, Double> dataExpense = monthData.get(isExpense);
-                String expense = isExpense ? "Самая большая трата: " : "Самый прибыльный товар: " ;
-                for (String name : dataExpense.keySet()){
-                    System.out.println(expense +  name + " - " + dataExpense.get(name));
-                }
-            }
- */
