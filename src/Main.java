@@ -35,22 +35,25 @@ public class Main {
                     break;
                 case 3:
                     if (monthlyReport01.expenseMonthReport.isEmpty() | monthlyReport02.expenseMonthReport.isEmpty() | monthlyReport03.expenseMonthReport.isEmpty()) {
-                        System.out.println("Месячные отчеты не считан");
+                        System.out.println("Месячные отчеты не считаны");
                     }
                     if (yearlyReport.expenseYearlyReport.isEmpty()) {
                         System.out.println("Годовой отчет не считан");
                     }
                     if (!check01.checks() & !check02.checks() & !check03.checks()) {
                         System.out.println("Ошибок между годовыми и месячными отчетами не обнаружено");
-                        break;
                     }
                     break;
                 case 4:
-                    monthlyReport01.topItem("01");
-                    System.out.println();
-                    monthlyReport02.topItem("02");
-                    System.out.println();
-                    monthlyReport03.topItem("03");
+                    if (monthlyReport01.expenseMonthReport.isEmpty() | monthlyReport02.expenseMonthReport.isEmpty() | monthlyReport03.expenseMonthReport.isEmpty()) {
+                        System.out.println("Месячные отчеты не считаны");
+                    } else {
+                        monthlyReport01.topItem("01");
+                        System.out.println();
+                        monthlyReport02.topItem("02");
+                        System.out.println();
+                        monthlyReport03.topItem("03");
+                    }
                     break;
                 case 5:
                     yearlyReport.yearReport("y.2021.csv");

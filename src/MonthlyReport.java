@@ -22,11 +22,12 @@ public class MonthlyReport {
     }
 
     public void topItem(String month) {
-
-        if (0 == expenseMonthReport.size()) {
+        /*
+        if (expenseMonthReport.isEmpty()) {
             System.out.println("Прежде чем выводить месячный отчет необходимо считать считать отчет m.2021" + month + ".csv, вы можете это сделать по кнопке 1");
             return;
         }
+         */
 
         System.out.println("Месяц "+ month);
         HashMap<String, Integer> profit = new HashMap<>();
