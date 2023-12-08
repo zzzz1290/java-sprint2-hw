@@ -34,8 +34,8 @@ public class Main {
                     System.out.println("Годовой отчет считан");
                     break;
                 case 3:
-                    if (monthlyReport01.expenseMonthReport.isEmpty()) {
-                        System.out.println("Месячный отчет не считан");
+                    if (monthlyReport01.expenseMonthReport.isEmpty() | monthlyReport02.expenseMonthReport.isEmpty() | monthlyReport03.expenseMonthReport.isEmpty()) {
+                        System.out.println("Месячные отчеты не считан");
                     }
                     if (yearlyReport.expenseYearlyReport.isEmpty()) {
                         System.out.println("Годовой отчет не считан");
