@@ -9,7 +9,8 @@ public class Check {
         this.yearlyReport = yearlyReport;
     }
 
-    public void checks() {
+    public boolean checks() {
+        boolean error = false;
         int amountToMountTrue = 0;
         int amountToMountFalse = 0;
         HashMap<String, HashMap<Boolean, Integer>> expenseMonthByMonth = new HashMap<>(); // month -> -> (quantity * unit_price) -> is_expense
@@ -38,6 +39,15 @@ public class Check {
             HashMap<Boolean, Integer> nameToAmount = expenseYearsByMonth.get(yearExpense.month);
             nameToAmount.put(yearExpense.is_expense, yearExpense.amount);
         }
+        if (expenseYearsByMonth.isEmpty()) {
+            error = true;
+            //System.out.println("Годовой отчет не был считан");
+        }
+        if (expenseMonthByMonth.isEmpty()) {
+            error = true;
+            //System.out.println("Месячный отчет не был считан " + path );
+        }
+
         for (String month : expenseYearsByMonth.keySet()) {
             if (expenseYearsByMonth.get(month) != null && expenseMonthByMonth.get(month) != null) {
                 HashMap<Boolean, Integer> monthToIsExpByYear = expenseYearsByMonth.get(month);
@@ -48,9 +58,12 @@ public class Check {
                     if (expenByYear != expenByMonth) {
                         System.out.println("Ошибка:");
                         System.out.println("Месяц " + month + " в годовом отчете " + expenByYear + " а в месячном отчете " + expenByMonth);
+                        error = true;
                     }
+
                 }
             }
         }
+        return error;
     }
 }

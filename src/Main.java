@@ -4,8 +4,6 @@ import java.util.HashMap;
 public class Main {
     public static void main(String[] args) {
         //
-        // Я бы с удовольствием с Вами связался в Пачке только поиск мне вас не выдает, если возможно как то через telegram мой t.me/QQno12
-        // ps на коментарии не забил, возникли некоторые вопросы с реализацией 
         Scanner scanner = new Scanner(System.in);
         MonthlyReport monthlyReport01 = new MonthlyReport();
         MonthlyReport monthlyReport02 = new MonthlyReport();
@@ -36,10 +34,16 @@ public class Main {
                     System.out.println("Годовой отчет считан");
                     break;
                 case 3:
-                    check01.checks();
-                    check02.checks();
-                    check03.checks();
-                    System.out.println("Сверка отчетов завершена");
+                    if (monthlyReport01.expenseMonthReport.isEmpty()) {
+                        System.out.println("Месячный отчет не считан");
+                    }
+                    if (yearlyReport.expenseYearlyReport.isEmpty()) {
+                        System.out.println("Годовой отчет не считан");
+                    }
+                    if (!check01.checks() & !check02.checks() & !check03.checks()) {
+                        System.out.println("Ошибок между годовыми и месячными отчетами не обнаружено");
+                        break;
+                    }
                     break;
                 case 4:
                     monthlyReport01.topItem("01");
@@ -47,7 +51,6 @@ public class Main {
                     monthlyReport02.topItem("02");
                     System.out.println();
                     monthlyReport03.topItem("03");
-                    System.out.println("Информация выведена");
                     break;
                 case 5:
                     yearlyReport.yearReport("y.2021.csv");

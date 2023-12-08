@@ -18,7 +18,13 @@ public class YearlyReport {
             expenseYearlyReport.add(yearExpense);
         }
     }
-public String yearReport (String path) {
+public void yearReport (String path) {
+
+    if (0 == expenseYearlyReport.size()) {
+        System.out.println("Прежде чем выводить годовой отчет необходимо считать файл " + path + " за это отвечает кнопка 2");
+        return;
+    }
+
     System.out.println("Год " + path);
     HashMap<String, Integer> profitsYear = new HashMap<>();
     int sumProfitYear = 0;
@@ -55,7 +61,6 @@ public String yearReport (String path) {
 
     System.out.println("Средняя прибыль за год " + sumProfitYear / sumMounthProfitYear);
     System.out.println("Средняя трата за год " + sumExpensYear / sumMounthExpensYear);
-    return null;
     }
     public void cleans() {
         expenseYearlyReport.clear();
