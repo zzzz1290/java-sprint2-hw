@@ -58,7 +58,6 @@ public class Main {
                 case 5:
                     yearlyReport.yearReport("y.2021.csv");
                     System.out.println();
-                    yearlyReport.cleans();
                     break;
                 case 6:
                     System.out.println("Выход");
